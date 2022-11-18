@@ -12,9 +12,6 @@ def find_left_eye():
     left_eye_list = cascade.detectMultiScale(img_gray, minNeighbors=5)
     return left_eye_list
 
-left_eye_list = find_left_eye()
-print(left_eye_list)
-
 def find_right_eye():
     cascade_file = "haarcascade_righteye_2splits.xml"
     cascade = cv2.CascadeClassifier(cascade_file)
@@ -23,10 +20,12 @@ def find_right_eye():
     right_eye_list = cascade.detectMultiScale(img_gray, minNeighbors=11)
     return right_eye_list
 
+left_eye_list = find_left_eye()
+print(left_eye_list)
+
 right_eye_list = find_right_eye()
 print(right_eye_list)
 
-face_name_list = left_eye_list
 
 def paste_img(face_name_list):
     x = face_name_list[0][0]
@@ -45,6 +44,7 @@ def paste_img(face_name_list):
 
     face_img.save("images/pasted_face.img.png")
 
+face_name_list = left_eye_list    
 paste_img(face_name_list)
 
 face_name_list = right_eye_list
